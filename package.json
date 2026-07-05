@@ -1,0 +1,15 @@
+{
+  "name": "vazhikara-aatam",
+  "private": true,
+  "packageManager": "pnpm@10.12.4",
+  "scripts": {
+    "test": "pnpm -r --parallel test",
+    "dev": "pnpm -r --parallel dev",
+    "typecheck": "pnpm -r --parallel exec tsc --noEmit",
+    "build": "pnpm --dir apps/web build",
+    "start": "NODE_ENV=production pnpm --dir apps/server start"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  }
+}

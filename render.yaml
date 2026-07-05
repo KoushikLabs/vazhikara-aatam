@@ -1,0 +1,16 @@
+# Render Blueprint for Vazhikara Aatam — one web service, Socket.IO + static
+# frontend on the same port. See DEPLOY.md for the runbook.
+services:
+  - type: web
+    name: vazhikara-aatam
+    runtime: node
+    plan: free
+    region: singapore # closest Render region to India, where most players are
+    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm build
+    startCommand: pnpm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 22

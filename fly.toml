@@ -1,0 +1,30 @@
+# Fly.io app config for Vazhikara Aatam.
+# Deploy with: flyctl launch --no-deploy (once, to create the app + adopt this
+# file) then flyctl deploy. See DEPLOY.md for the full runbook.
+
+app = "vazhikara-aatam" # placeholder — flyctl will prompt to rename to a free name
+primary_region = "iad"
+
+[build]
+
+[env]
+  PORT = "3001"
+  NODE_ENV = "production"
+
+[http_service]
+  internal_port = 3001
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    grace_period = "10s"
+    interval = "15s"
+    method = "GET"
+    path = "/healthz"
+    timeout = "5s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
